@@ -4,7 +4,7 @@
  * @author simpart
  */
 
-module.exports = class extends mofron.parts.Base {
+mofron.parts.Heading = class extends mofron.parts.Base {
     constructor (txt, lv) {
         try {
             var _lv = (lv === undefined) ? 1 : lv;
