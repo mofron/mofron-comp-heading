@@ -1,17 +1,17 @@
 {
-  "name": "mofron-parts-heading",
-  "version": "0.0.3",
-  "description": "heading parts of mofron",
+  "name": "mofron-comp-heading",
+  "version": "0.0.4",
+  "description": "heading component for mofron",
   "main": "dist/heading.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "mofron": "^0.1.11"
+    "mofron": "^0.1.15"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/simpart/mofron-parts-heading.git"
+    "url": "git+https://github.com/simpart/mofron-comp-heading.git"
   },
   "keywords": [
     "mofron"
@@ -19,9 +19,9 @@
   "author": "simparts",
   "license": "SEE LICENSE IN LICENSE",
   "bugs": {
-    "url": "https://github.com/simpart/mofron-parts-heading/issues"
+    "url": "https://github.com/simpart/mofron-comp-heading/issues"
   },
-  "homepage": "https://github.com/simpart/mofron-parts-heading#readme",
+  "homepage": "https://github.com/simpart/mofron-comp-heading#readme",
   "devDependencies": {
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
