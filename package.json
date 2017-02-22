@@ -1,13 +1,10 @@
 {
   "name": "mofron-comp-heading",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "heading component for mofron",
-  "main": "dist/heading.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
-    "mofron": "^0.1.15"
   },
   "repository": {
     "type": "git",
@@ -23,9 +20,5 @@
   },
   "homepage": "https://github.com/simpart/mofron-comp-heading#readme",
   "devDependencies": {
-    "babel-core": "^6.21.0",
-    "babel-loader": "^6.2.10",
-    "babel-preset-es2015": "^6.18.0",
-    "webpack": "^1.14.0"
   }
 }
