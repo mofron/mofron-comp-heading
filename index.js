@@ -34,10 +34,13 @@ mofron.comp.Heading = class extends mofron.Component {
                         param : prm
                     })
                 );
-            } else if ('object' === mofron.func.isInclude(prm, 'Text')) {
+            } else if (true === mofron.func.isInclude(prm, 'Text')) {
                 var conts = new mofron.Dom('div', this);
                 this.vdom().addChild(conts);
                 this.target(conts);
+                this.style('display'    , 'flex');
+                this.style('align-items', 'center');
+                
                 if (true === mofron.func.isInclude(prm, 'Text')) {
                     var lv = this.level();
                     if (1 === lv) {
