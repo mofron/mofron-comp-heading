@@ -2,14 +2,15 @@
  * @file   Heading.js
  * @author simpart
  */
-require('mofron-comp-text');
+let mf = require('mofron');
+let Text = require('mofron-comp-text');
 
 
 /**
  * @class Heading
  * @brief base heading component 
  */
-mofron.comp.Heading = class extends mofron.Component {
+mf.comp.Heading = class extends mf.Component {
     constructor (prm_opt) {
         try {
             super();
@@ -25,39 +26,37 @@ mofron.comp.Heading = class extends mofron.Component {
     
     initDomConts (prm) {
         try {
-            if ('string' === (typeof prm)) {
-                var conts = new mofron.Dom('h' + this.level(), this);
-                this.vdom().addChild(conts);
-                this.target(conts);
-                this.addChild(
-                    new mofron.comp.Text({
-                        param : prm
-                    })
-                );
-            } else if (true === mofron.func.isInclude(prm, 'Text')) {
-                var conts = new mofron.Dom('div', this);
-                this.vdom().addChild(conts);
-                this.target(conts);
-                this.style('display'    , 'flex');
-                this.style('align-items', 'center');
-                
-                if (true === mofron.func.isInclude(prm, 'Text')) {
-                    var lv = this.level();
-                    if (1 === lv) {
-                        prm.size(32);
-                    } else if (2 === lv) {
-                        prm.size(24);
-                    } else if (3 === lv) {
-                        prm.size(18);
-                    } else if (4 === lv) {
-                        prm.size(16);
-                    } else if (5) {
-                        prm.size(12);
-                    } else {
-                        prm.size(10);
-                    }
-                }
-                this.addChild(prm);
+            super.initDomConts();
+            let hrz = new mf.Dom({
+                tag       : 'div',
+                component : this,
+                style     : { 'display'     : 'flex',
+                              'align-items' : 'center' }
+            });
+            this.target().addChild(hrz);
+            this.target(hrz);
+            this.updTag();
+        } catch (e) {
+            console.error(e.stack);
+            throw e;
+        }
+    }
+    
+    htag (flg) {
+        try {
+            if (undefined === typeof flg) {
+                /* getter */
+                return (undefined === this.m_htag) ? false : this.m_htag;
+            }
+            /* setter */
+            if ('boolean' !== typeof flg) {
+                throw new Error('invalid parameter');
+            }
+            this.m_htag = flg;
+            if (true === this.m_htag) {
+                this.target().tag('h' + this.level());
+            } else {
+               
             }
         } catch (e) {
             console.error(e.stack);
@@ -65,18 +64,90 @@ mofron.comp.Heading = class extends mofron.Component {
         }
     }
     
+    updTag () {
+        try {
+            if (true === this.m_htag) {
+                this.target().tag('h' + this.level());
+            } else {
+                this.target().tag('div');
+                this.target().style({
+                    'height' : (this.getLevelSize() * 2) + 'px'
+                });
+            }
+        } catch (e) {
+            console.error(e.stack);
+            throw e;
+        }
+    }
+    
+    
     level (lv) {
         try {
             if (undefined === lv) {
-                return this.m_level;
+                /* getter */
+                return (undefined === this.m_level) ? 3 : this.m_level;
             }
-            if ('number' !== typeof lv) {
-                throw new Error('invalid parameter');
-            }
-            if ((1 > lv) || (6 < lv)) {
+            /* setter */
+            if ( ('number' !== typeof lv) ||
+                 (1 > lv) ||
+                 (6 < lv) ) {
                 throw new Error('invalid parameter');
             }
             this.m_level = lv;
+            this.updTag();
+            if (0 < this.child().length) {
+                this.child()[0].size(this.getLevelSize());
+            }
+        } catch (e) {
+            console.error(e.stack);
+            throw e;
+        }
+    }
+    
+    getLevelSize () {
+        try {
+            var lv   = this.level();
+            if (1 === lv) {
+                return 32;
+            } else if (2 === lv) {
+                return 24;
+            } else if (3 === lv) {
+                return 18;
+            } else if (4 === lv) {
+                return 16;
+            } else if (5) {
+                return 12;
+            } else {
+                return 10;
+            }
+        } catch (e) {
+            console.error(e.stack);
+            throw e;
+        }
+    }
+    
+    contents (cnt) {
+        try {
+            if (undefined === cnt) {
+                /* getter */
+                return (0 === this.child().length) ? null : this.child()[0];
+            }
+            /* setter */
+            let set_cnt = null;
+            if ('string' === typeof cnt) {
+                set_cnt = new Text({
+                    text  : cnt,
+                    size  : this.getLevelSize(),
+                    style : { 'margin-left' : '5px' }
+                });
+            } else if (true === mf.func.isInclude(cnt, 'Text')) {
+                set_cnt = cnt;
+                set_cnt.size(this.getLevelSize());
+                set_cnt.style({ 'margin-left' : '5px' });
+            } else {
+                throw new Error('invalid parameter');
+            }
+            this.addChild(set_cnt);
         } catch (e) {
             console.error(e.stack);
             throw e;

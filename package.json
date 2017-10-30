@@ -1,6 +1,6 @@
 {
   "name": "mofron-comp-heading",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "description": "heading component for mofron",
   "main": "index.js",
   "scripts": {
@@ -8,17 +8,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/simpart/mofron-comp-heading.git"
+    "url": "git+https://github.com/mofron/mofron-comp-heading.git"
   },
   "keywords": [
-    "mofron"
+    "front-end"
   ],
   "author": "simparts",
   "license": "SEE LICENSE IN LICENSE",
   "bugs": {
-    "url": "https://github.com/simpart/mofron-comp-heading/issues"
+    "url": "https://github.com/mofron/mofron-comp-heading/issues"
   },
-  "homepage": "https://github.com/simpart/mofron-comp-heading#readme",
+  "homepage": "https://github.com/mofron/mofron-comp-heading#readme",
   "devDependencies": {
   }
 }
