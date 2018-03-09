@@ -11,13 +11,13 @@ let Text = require('mofron-comp-text');
  * @brief base heading component 
  */
 mf.comp.Heading = class extends mf.Component {
-    constructor (prm_opt) {
+    constructor (po) {
         try {
             super();
             this.name('Heading');
             this.m_level = 3;
             /* option */
-            this.prmOpt(prm_opt);
+            this.prmOpt(po);
         } catch (e) {
             console.error(e.stack);
             throw e;
@@ -26,38 +26,36 @@ mf.comp.Heading = class extends mf.Component {
     
     initDomConts (prm) {
         try {
-            super.initDomConts();
+            //super.initDomConts();
             let hrz = new mf.Dom({
                 tag       : 'div',
-                component : this,
+                component : this ,
                 style     : { 'display'     : 'flex',
                               'align-items' : 'center' }
             });
-            this.target().addChild(hrz);
-            this.target(hrz);
+            this.adom().addChild(hrz);
             this.updTag();
+            if (undefined !== prm) {
+                this.text(prm);
+            }
         } catch (e) {
             console.error(e.stack);
             throw e;
         }
     }
     
-    htag (flg) {
+    htag (prm) {
         try {
-            if (undefined === typeof flg) {
+            if (undefined === typeof prm) {
                 /* getter */
                 return (undefined === this.m_htag) ? false : this.m_htag;
             }
             /* setter */
-            if ('boolean' !== typeof flg) {
+            if ('boolean' !== typeof prm) {
                 throw new Error('invalid parameter');
             }
-            this.m_htag = flg;
-            if (true === this.m_htag) {
-                this.target().tag('h' + this.level());
-            } else {
-               
-            }
+            this.m_htag = prm;
+            this.updTag();
         } catch (e) {
             console.error(e.stack);
             throw e;
@@ -126,7 +124,7 @@ mf.comp.Heading = class extends mf.Component {
         }
     }
     
-    contents (cnt) {
+    text (cnt) {
         try {
             if (undefined === cnt) {
                 /* getter */
@@ -154,5 +152,4 @@ mf.comp.Heading = class extends mf.Component {
         }
     }
 }
-mofron.comp.heading = {};
 module.exports = mofron.comp.Heading;
