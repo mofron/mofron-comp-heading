@@ -5,12 +5,11 @@
 let mf = require('mofron');
 let Text = require('mofron-comp-text');
 
-
 /**
  * @class Heading
  * @brief base heading component 
  */
-mf.comp.Heading = class extends mf.Component {
+mofron.comp.Heading = class extends mf.Component {
     constructor (po) {
         try {
             super();
