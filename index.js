@@ -2,20 +2,21 @@
  * @file   Heading.js
  * @author simpart
  */
-let mf = require('mofron');
-let Text = require('mofron-comp-text');
+const mf   = require('mofron');
+const Text = require('mofron-comp-text');
 
 /**
  * @class Heading
  * @brief base heading component 
  */
-mofron.comp.Heading = class extends mf.Component {
+mf.comp.Heading = class extends mf.Component {
     constructor (po) {
         try {
             super();
             this.name('Heading');
             this.m_level = 3;
             /* option */
+            this.prmMap('text');
             this.prmOpt(po);
         } catch (e) {
             console.error(e.stack);
@@ -23,9 +24,8 @@ mofron.comp.Heading = class extends mf.Component {
         }
     }
     
-    initDomConts (prm) {
+    initDomConts () {
         try {
-            //super.initDomConts();
             let hrz = new mf.Dom({
                 tag       : 'div',
                 component : this ,
@@ -34,9 +34,6 @@ mofron.comp.Heading = class extends mf.Component {
             });
             this.adom().addChild(hrz);
             this.updTag();
-            if (undefined !== prm) {
-                this.text(prm);
-            }
         } catch (e) {
             console.error(e.stack);
             throw e;
@@ -68,7 +65,7 @@ mofron.comp.Heading = class extends mf.Component {
             } else {
                 this.target().tag('div');
                 this.target().style({
-                    'height' : (this.getLevelSize() * 2) + 'px'
+                    'height' : (this.getLevelSize() * 2) + 'rem'
                 });
             }
         } catch (e) {
@@ -105,17 +102,17 @@ mofron.comp.Heading = class extends mf.Component {
         try {
             var lv   = this.level();
             if (1 === lv) {
-                return 32;
+                return 0.32;
             } else if (2 === lv) {
-                return 24;
+                return 0.24;
             } else if (3 === lv) {
-                return 18;
+                return 0.18;
             } else if (4 === lv) {
-                return 16;
+                return 0.16;
             } else if (5) {
-                return 12;
+                return 0.12;
             } else {
-                return 10;
+                return 0.10;
             }
         } catch (e) {
             console.error(e.stack);
@@ -135,12 +132,12 @@ mofron.comp.Heading = class extends mf.Component {
                 set_cnt = new Text({
                     text  : cnt,
                     size  : this.getLevelSize(),
-                    style : { 'margin-left' : '5px' }
+                    style : { 'margin-left' : '0.05rem' }
                 });
             } else if (true === mf.func.isInclude(cnt, 'Text')) {
                 set_cnt = cnt;
                 set_cnt.size(this.getLevelSize());
-                set_cnt.style({ 'margin-left' : '5px' });
+                set_cnt.style({ 'margin-left' : '0.05rem' });
             } else {
                 throw new Error('invalid parameter');
             }
@@ -152,3 +149,4 @@ mofron.comp.Heading = class extends mf.Component {
     }
 }
 module.exports = mofron.comp.Heading;
+/* end of file */
