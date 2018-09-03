@@ -10,14 +10,14 @@ const Text = require('mofron-comp-text');
  * @brief base heading component 
  */
 mf.comp.Heading = class extends mf.Component {
-    constructor (po) {
+    constructor (po, p2) {
         try {
             super();
             this.name('Heading');
             this.m_level = 3;
             /* option */
-            this.prmMap('text');
-            this.prmOpt(po);
+            this.prmMap('text', 'level');
+            this.prmOpt(po, p2);
         } catch (e) {
             console.error(e.stack);
             throw e;
@@ -64,9 +64,9 @@ mf.comp.Heading = class extends mf.Component {
                 this.target().tag('h' + this.level());
             } else {
                 this.target().tag('div');
-                this.target().style({
-                    'height' : (this.getLevelSize() * 2) + 'rem'
-                });
+                let lv_siz = this.getLevelSize();
+                lv_siz.value(lv_siz.value() * 2);
+                this.sizeValue('height', lv_siz.toString());
             }
         } catch (e) {
             console.error(e.stack);
@@ -102,17 +102,17 @@ mf.comp.Heading = class extends mf.Component {
         try {
             var lv   = this.level();
             if (1 === lv) {
-                return 0.32;
+                return new mf.size.Rem(0.32);
             } else if (2 === lv) {
-                return 0.24;
+                return new mf.size.Rem(0.24);
             } else if (3 === lv) {
-                return 0.18;
+                return new mf.size.Rem(0.18);
             } else if (4 === lv) {
-                return 0.16;
+                return new mf.size.Rem(0.16);
             } else if (5) {
-                return 0.12;
+                return new mf.size.Rem(0.12);
             } else {
-                return 0.10;
+                return new mf.size.Rem(0.10);
             }
         } catch (e) {
             console.error(e.stack);
@@ -129,18 +129,16 @@ mf.comp.Heading = class extends mf.Component {
             /* setter */
             let set_cnt = null;
             if ('string' === typeof cnt) {
-                set_cnt = new Text({
-                    text  : cnt,
-                    size  : this.getLevelSize(),
-                    style : { 'margin-left' : '0.05rem' }
-                });
+                set_cnt = new Text(cnt);
             } else if (true === mf.func.isInclude(cnt, 'Text')) {
                 set_cnt = cnt;
-                set_cnt.size(this.getLevelSize());
-                set_cnt.style({ 'margin-left' : '0.05rem' });
             } else {
                 throw new Error('invalid parameter');
             }
+            set_cnt.execOption({
+                size      : this.getLevelSize(),
+                sizeValue : new mf.Param('margin-left', '0.05rem')
+            });
             this.addChild(set_cnt);
         } catch (e) {
             console.error(e.stack);
