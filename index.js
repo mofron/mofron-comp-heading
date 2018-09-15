@@ -34,6 +34,7 @@ mf.comp.Heading = class extends mf.Component {
             });
             this.adom().addChild(hrz);
             this.updTag();
+            this.child([ this.text() ]);
         } catch (e) {
             console.error(e.stack);
             throw e;
@@ -74,7 +75,6 @@ mf.comp.Heading = class extends mf.Component {
         }
     }
     
-    
     level (lv) {
         try {
             if (undefined === lv) {
@@ -102,17 +102,17 @@ mf.comp.Heading = class extends mf.Component {
         try {
             var lv   = this.level();
             if (1 === lv) {
-                return new mf.size.Rem(0.32);
+                return new mf.size.Rem('0.32rem');
             } else if (2 === lv) {
-                return new mf.size.Rem(0.24);
+                return new mf.size.Rem('0.24rem');
             } else if (3 === lv) {
-                return new mf.size.Rem(0.18);
+                return new mf.size.Rem('0.18rem');
             } else if (4 === lv) {
-                return new mf.size.Rem(0.16);
+                return new mf.size.Rem('0.16rem');
             } else if (5) {
-                return new mf.size.Rem(0.12);
+                return new mf.size.Rem('0.12rem');
             } else {
-                return new mf.size.Rem(0.10);
+                return new mf.size.Rem('0.10rem');
             }
         } catch (e) {
             console.error(e.stack);
@@ -120,27 +120,39 @@ mf.comp.Heading = class extends mf.Component {
         }
     }
     
-    text (cnt) {
+    text (prm) {
         try {
-            if (undefined === cnt) {
+            if (undefined === prm) {
                 /* getter */
-                return (0 === this.child().length) ? null : this.child()[0];
+                if (undefined === this.m_text) {
+                    this.text(new Text({}));
+                }
+                return this.m_text;
             }
             /* setter */
-            let set_cnt = null;
-            if ('string' === typeof cnt) {
-                set_cnt = new Text(cnt);
-            } else if (true === mf.func.isInclude(cnt, 'Text')) {
-                set_cnt = cnt;
+            if ('string' === typeof prm) {
+                this.text().text(prm);
+            } else if (true === mf.func.isInclude(prm, 'Text')) {
+                if (undefined === this.m_text) {
+                    this.m_text = prm;
+                } else {
+                    this.updChild(this.text(), prm);
+                }
             } else {
                 throw new Error('invalid parameter');
             }
-            set_cnt.execOption({
+            this.text().execOption({
                 size      : this.getLevelSize(),
                 sizeValue : new mf.Param('margin-left', '0.05rem')
             });
-            this.addChild(set_cnt);
         } catch (e) {
+            console.error(e.stack);
+            throw e;
+        }
+    }
+    
+    color (prm) {
+        try { return this.text().color(prm); } catch (e) {
             console.error(e.stack);
             throw e;
         }
