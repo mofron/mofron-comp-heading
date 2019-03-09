@@ -1,6 +1,6 @@
 {
   "name": "mofron-comp-heading",
-  "version": "0.1.8",
+  "version": "0.2.0",
   "description": "heading component for mofron",
   "main": "index.js",
   "scripts": {
@@ -14,7 +14,7 @@
     "front-end"
   ],
   "author": "simparts",
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/mofron/mofron-comp-heading/issues"
   },
