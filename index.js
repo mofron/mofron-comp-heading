@@ -5,7 +5,7 @@
 const mf     = require('mofron');
 const Text   = require('mofron-comp-text');
 const Horiz  = require('mofron-layout-horizon');
-const HrzPos = require('mofron-effect-hrzpos');
+const VrtPos = require('mofron-effect-vrtpos');
 
 /**
  * @class Heading
@@ -35,8 +35,18 @@ mf.comp.Heading = class extends mf.Component {
         }
     }
     
-    level (lv) {
-        try { return this.member('level', 'number', prm, 4); } catch (e) {
+    level (prm) {
+        try {
+            let ret = this.member('level', 'number', prm, 0);
+            if (undefined !== prm) {
+                if ( (1 > prm) || (6 < prm) ) {
+                    throw new Error('invalid parameter');
+                }
+                let siz = [ '0.32rem', '0.24rem', '0.18rem', '0.16rem', '0.12rem', '0.10rem' ];
+                this.text().option({ size: siz[this.level()] });
+            }
+            return ret;
+        } catch (e) {
             console.error(e.stack);
             throw e;
         }
@@ -45,11 +55,11 @@ mf.comp.Heading = class extends mf.Component {
     text (prm) {
         try {
             if (undefined !== prm) {
-                let siz = [ '0.32rem', '0.24rem', '0.18rem', '0.16rem', '0.12rem', '0.10rem' ];
-                prm.option({
-                    size: siz[this.level()], sizeValue: ['margin-left', '0.05rem'],
-                    effect: [ new HrzPos('center') ]
-                });
+                prm.option({ effect: [ new VrtPos('center') ], sizeValue: ['margin-left', '0.2rem'] });
+                if (0 !== this.level()) {
+                    let siz = [ '0.32rem', '0.24rem', '0.18rem', '0.16rem', '0.12rem', '0.10rem' ];
+                    prm.option({ size: siz[this.level()] });
+                }
             }
             return this.innerComp('text', prm, Text);
         } catch (e) {
