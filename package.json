@@ -1,6 +1,6 @@
 {
   "name": "mofron-comp-heading",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "heading component for mofron",
   "main": "index.js",
   "scripts": {
@@ -13,12 +13,15 @@
   "keywords": [
     "front-end"
   ],
+  "dependencies": {
+    "mofron-comp-text" : "",
+    "mofron-layout-horizon" : "",
+    "mofron-effect-vrtpos" : ""
+  },
   "author": "simparts",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mofron/mofron-comp-heading/issues"
   },
-  "homepage": "https://github.com/mofron/mofron-comp-heading#readme",
-  "devDependencies": {
-  }
+  "homepage": "https://github.com/mofron/mofron-comp-heading#readme"
 }

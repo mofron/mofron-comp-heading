@@ -43,7 +43,7 @@ mf.comp.Heading = class extends mf.Component {
                     throw new Error('invalid parameter');
                 }
                 let siz = [ '0.32rem', '0.24rem', '0.18rem', '0.16rem', '0.12rem', '0.10rem' ];
-                this.text().option({ size: siz[this.level()] });
+                this.text().option({ size: siz[this.level()-1] });
             }
             return ret;
         } catch (e) {
@@ -54,12 +54,15 @@ mf.comp.Heading = class extends mf.Component {
     
     text (prm) {
         try {
-            if (undefined !== prm) {
+            if (true === mf.func.isComp(prm,"Text")) {
                 prm.option({ effect: [ new VrtPos('center') ], sizeValue: ['margin-left', '0.2rem'] });
                 if (0 !== this.level()) {
                     let siz = [ '0.32rem', '0.24rem', '0.18rem', '0.16rem', '0.12rem', '0.10rem' ];
                     prm.option({ size: siz[this.level()] });
                 }
+            } else if ("string" === typeof prm) { 
+                this.text().text(prm);
+                return;
             }
             return this.innerComp('text', prm, Text);
         } catch (e) {
