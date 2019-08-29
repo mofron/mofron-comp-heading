@@ -1,0 +1,5 @@
+<require>
+    <tag module="mofron-comp-heading">Heading</tag>
+</require>
+
+<Heading mainColor=#b4b4fd level=1>Heading</Heading>

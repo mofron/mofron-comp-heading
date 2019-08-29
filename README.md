@@ -1,16 +1,30 @@
 # mofron-comp-heading
-heading component for mofron.<br>
+[mofron](https://mofron.github.io/mofron/) is module based frontend framework.
 
-# sample
-please see [here](https://github.com/simpart/mofron) about an overview of mofron.
+heading component for mofron
 
-```javascript
-require('mofron');
-let Heading = require('mofron-comp-heading');
 
-new Heading({
-    param   : 'Heading',
-    level   : 1,    // set h1 (default is h3)
-    visible : true
-});
+# Install
 ```
+npm install mofron mofron-comp-heading
+```
+
+# Sample
+```html
+<require>
+    <tag module="mofron-comp-heading">Heading</tag>
+</require>
+
+<Heading mainColor=#b4b4fd level=1>Heading</Heading>
+```
+# Parameter
+
+|Simple<br>Param | Parameter Name | Type | Description |
+|:--------------:|:---------------|:-----|:------------|
+| | level | number | text size level [1-6] |
+| | text | mixed | string: heading text contents |
+| | | | mofron-comp-text: heading text component |
+| | mainColor | mixed (color) | string: text color name, #hex |
+| | | | array: [red, green, blue, (alpha)] |
+| | | option | style option |
+

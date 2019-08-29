@@ -1,5 +1,6 @@
 /**
- * @file   Heading.js
+ * @file mofron-comp-heading/index.js
+ * @brief heading component for mofron
  * @author simpart
  */
 const mf     = require('mofron');
@@ -7,11 +8,15 @@ const Text   = require('mofron-comp-text');
 const Horiz  = require('mofron-layout-horizon');
 const VrtPos = require('mofron-effect-vrtpos');
 
-/**
- * @class Heading
- * @brief base heading component 
- */
 mf.comp.Heading = class extends mf.Component {
+    /**
+     * initialize component
+     * 
+     * @param (mixed) text parameter
+     *                object: component option
+     * @param (prm) level parameter
+     * @type private
+     */
     constructor (po, p2) {
         try {
             super();
@@ -25,6 +30,11 @@ mf.comp.Heading = class extends mf.Component {
         }
     }
     
+    /**
+     * initialize dom contents
+     * 
+     * @type private
+     */
     initDomConts () {
         try {
             super.initDomConts();
@@ -35,6 +45,13 @@ mf.comp.Heading = class extends mf.Component {
         }
     }
     
+    /**
+     * text size
+     * 
+     * @param (number) text size level [1-6]
+     * @return (number) text size level
+     * @type parameter
+     */
     level (prm) {
         try {
             let ret = this.member('level', 'number', prm, 0);
@@ -52,6 +69,14 @@ mf.comp.Heading = class extends mf.Component {
         }
     }
     
+    /**
+     * heading text contents
+     * 
+     * @param (mixed) string: heading text contents
+     *                mofron-comp-text: heading text component
+     * @return (mofron-comp-text) heading text component
+     * @type parameter
+     */
     text (prm) {
         try {
             if (true === mf.func.isComp(prm,"Text")) {
@@ -71,8 +96,16 @@ mf.comp.Heading = class extends mf.Component {
         }
     }
     
-    color (prm) {
-        try { return this.text().color(prm); } catch (e) {
+    /**
+     * text color
+     * 
+     * @param (mixed (color)) string: text color name, #hex
+     *                        array: [red, green, blue, (alpha)]
+     * @param (option) style option
+     * @type parameter
+     */
+    mainColor (prm, opt) {
+        try { return this.text().color(prm,opt); } catch (e) {
             console.error(e.stack);
             throw e;
         }
