@@ -22,9 +22,9 @@ npm install mofron mofron-comp-heading
 
 | Short<br>Form | Parameter Name | Type | Description |
 |:-------------:|:---------------|:-----|:------------|
-| ◯  | level | number | text size level [1-6] |
 | ◯  | text | mixed | string: heading text contents |
 | | | | mofron-comp-text: heading text component |
+| ◯  | level | number | text size level [1-6] |
 | | mainColor | mixed (color) | string: text color name, #hex |
 | | | | array: [red, green, blue, (alpha)] |
 | | | key-value | style option |
