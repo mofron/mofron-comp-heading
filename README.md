@@ -15,16 +15,17 @@ npm install mofron mofron-comp-heading
     <tag module="mofron-comp-heading">Heading</tag>
 </require>
 
-<Heading mainColor=#b4b4fd level=1>Heading</Heading>
+<Heading color="#f0e6fa" level=2>Heading</Heading>
 ```
+
 # Parameter
 
-|Simple<br>Param | Parameter Name | Type | Description |
-|:--------------:|:---------------|:-----|:------------|
-| | level | number | text size level [1-6] |
-| | text | mixed | string: heading text contents |
+| Short<br>Form | Parameter Name | Type | Description |
+|:-------------:|:---------------|:-----|:------------|
+| ◯  | level | number | text size level [1-6] |
+| ◯  | text | mixed | string: heading text contents |
 | | | | mofron-comp-text: heading text component |
 | | mainColor | mixed (color) | string: text color name, #hex |
 | | | | array: [red, green, blue, (alpha)] |
-| | | option | style option |
+| | | key-value | style option |
 

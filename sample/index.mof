@@ -2,4 +2,4 @@
     <tag module="mofron-comp-heading">Heading</tag>
 </require>
 
-<Heading mainColor=#b4b4fd level=1>Heading</Heading>
+<Heading color="#f0e6fa" level=2>Heading</Heading>
