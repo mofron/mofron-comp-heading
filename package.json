@@ -1,6 +1,6 @@
 {
   "name": "mofron-comp-heading",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "heading component for mofron",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "url": "git+https://github.com/mofron/mofron-comp-heading.git"
   },
   "keywords": [
-    "front-end"
+    "front-end","mofron"
   ],
   "dependencies": {
     "mofron-comp-text" : "",

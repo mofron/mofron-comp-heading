@@ -11,9 +11,9 @@ npm install mofron mofron-comp-heading
 
 # Sample
 ```html
-<require>
+<setting>
     <tag module="mofron-comp-heading">Heading</tag>
-</require>
+</setting>
 
 <Heading color="#f0e6fa" level=2>Heading</Heading>
 ```

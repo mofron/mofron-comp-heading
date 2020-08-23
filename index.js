@@ -1,7 +1,7 @@
 /**
  * @file mofron-comp-heading/index.js
  * @brief heading component for mofron
- * @author simpart
+ * @license MIT
  */
 const Text   = require('mofron-comp-text');
 const Horiz  = require('mofron-layout-horizon');
@@ -21,7 +21,7 @@ module.exports = class extends mofron.class.Component {
     constructor (p1, p2) {
         try {
             super();
-            this.name('Heading');
+            this.modname('Heading');
             this.shortForm('text', 'level');
 
             /* init config */
