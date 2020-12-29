@@ -45,7 +45,7 @@ module.exports = class extends mofron.class.Component {
     initDomConts () {
         try {
             super.initDomConts();
-            this.layout(new Horiz());
+            this.layout(new Horiz(), { private:true });
 	    this.child(this.text());
         } catch (e) {
             console.error(e.stack);
